@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>API 郵便番号検索</title>
+</head>
+<body>
+
+<!--
+<h2>郵便番号から住所検索</h2>
+
+<table>
+  <tr>
+    <th>郵便番号</th>
+    <td><input type="text" id="postcode" maxlength="8" size="8" placeholder="123-4567">
+    <button id="btn">GO</button></td>
+  </tr>
+  <tr>
+    <th>都道府県</th>
+    <td><input type="text" id="pref" size="14"></td>
+  </tr>
+  <tr>
+    <th>市区町村</th>
+    <td><input type="text" id="city" size="14"></td>
+  </tr>
+  <tr>
+    <th>住所</th>
+    <td><input type="text" id="address" size="14"></td>
+  </tr>
+</table>
+<style>
+  body {
+    font-size: 14px;
+  }
+  h2 {
+    font-size: 16px;
+  }
+  th {
+    text-align: left;
+    font-weight: normal;
+  }
+</style>
+-->
+
+<h3>郵便番号から住所検索サンプル</h3>
+<label>郵便番号<input id="postcode" type="text" size="12" maxlength="8" placeholder="例：162-0825"></label>
+<button id="btn">検索</button>
+<div id="result">
+  <p><label>都道府県 <input id="pref" type="text" size="6"></label></p>
+  <p><label>市区町村 <input id="city" type="text" size="6"></label></p>
+  <p><label>住所 <input id="address" type="text"></label></p>
+</div>
+
+<script src="address.js"></script>
+</body>
+</html>
