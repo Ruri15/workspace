@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div class="nameData">
+    <p>がんばっペ！Wake Up, Girls！</p>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+  $.ajax({
+  	url: 'files.json',
+  	dataType: 'json',
+  	data: {name: 'chara'},
+  	success: function(data){
+  		var dataArray = data.charas;
+
+  		$.each(dataArray, function(i){
+  			$(".nameData").append("<p>id: " + dataArray[i].id + "　Character: " + dataArray[i].chara + "　　(CV: " + dataArray[i].cv + ")</p>");
+  		});
+  	}
+  });
+  </script>
+</body>
+</html>
