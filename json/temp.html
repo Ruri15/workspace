@@ -8,38 +8,22 @@
   <link href="https://fonts.googleapis.com/css?family=Exo:900" rel="stylesheet">
 </head>
 <body>
-  <h1>test</h1>
+  <h1 class="heading1">cats</h1>
 
+<div class="content">
   <ul class="ume_list">
-    <!--
-    <li><img src="img/1.jpg" alt=""></li>
-    <li><img src="img/2.jpg" alt=""></li>
-    <li><img src="img/3.jpg" alt=""></li>
-    <li><img src="img/4.jpg" alt=""></li>
-    <li><img src="img/5.jpg" alt=""></li>
-    <li><img src="img/6.jpg" alt=""></li>
-    <li><img src="img/7.jpg" alt=""></li>
-    <li><img src="img/8.jpg" alt=""></li>
-    <li><img src="img/9.jpg" alt=""></li>
-    <li><img src="img/10.jpg" alt=""></li>
-    <li><img src="img/11.jpg" alt=""></li>
-    <li><img src="img/12.jpg" alt=""></li>
-    <li><img src="img/13.jpg" alt=""></li>
-    <li><img src="img/14.jpg" alt=""></li>
-    <li><img src="img/15.jpg" alt=""></li>
-  -->
   </ul>
 
   <div class="loadarea">
     <div class="moretext">
-      <span>more cute !</span>
+      <span id="more">more cute !</span>
     </div>
   </div>
+</div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script>
-
   var defaultNum = 9;
   var loadNum = 3;
 
@@ -55,11 +39,33 @@
       for(var i=0; i < defaultNum ; i++) {
         $('.ume_list').append("<li><img src=\"img/" + array[i].id + ".jpg\" alt=\"\"></li>");
       };
+
+//全部表示する場合↓
   /*    $.each(array, function(i){
         $('.ume_list').append("<li><img src=\"img/" + array[i].id + ".jpg\" alt=\"\"></li>");
       });*/
+
+      $('#more').on('click', function() {
+        //現在のlistの子要素数取得
+        var shownItemNum = $('.ume_list').children().length;
+
+        //最大枚数表示されていればなにもしない
+        if (shownItemNum >= maxNum) {
+          ;
+        }
+        else {
+          for(var j=shownItemNum; j < shownItemNum+3; j++ ) {
+            $('.ume_list').append("<li><img src=\"img/" + array[j].id + ".jpg\" alt=\"\"></li>");
+          }
+        }
+      });
     }
   });
+
+    var umeItem = $($('.ume_list').children());
+    $('body').on('click', '.ume_list li', function() {
+      console.log('おした');
+    });
   </script>
 
   <style>
@@ -71,6 +77,17 @@
     ul { list-style: none; }
     img {
       max-width: 100%;
+    }
+    .content {
+      animation:show 1.0s;
+    }
+    @keyframes show {
+      0% { opacity: 0.1; }
+      100% { opacity: 1.0; }
+    }
+    .heading1 {
+      font-family: "Exo";
+      line-height: 2.0;
     }
     .ume_list {
       overflow: hidden;
