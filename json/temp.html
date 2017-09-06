@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>temp test</title>
+  <link href="https://fonts.googleapis.com/css?family=Exo:900" rel="stylesheet">
 </head>
 <body>
   <h1>test</h1>
@@ -28,22 +29,35 @@
     <li><img src="img/15.jpg" alt=""></li>
   -->
   </ul>
+
   <div class="loadarea">
-    
+    <div class="moretext">
+      <span>more cute !</span>
+    </div>
   </div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script>
+
+  var defaultNum = 9;
+  var loadNum = 3;
+
   $.ajax({
     url: 'cats.json',
     dataType: 'json',
     data: {name: 'cat'},
     success: function(data){
       var array = data.cats;
-      $.each(array, function(i){
+      var maxNum = array.length;//json配列の数
+
+// defaultNum枚分を表示
+      for(var i=0; i < defaultNum ; i++) {
         $('.ume_list').append("<li><img src=\"img/" + array[i].id + ".jpg\" alt=\"\"></li>");
-      });
+      };
+  /*    $.each(array, function(i){
+        $('.ume_list').append("<li><img src=\"img/" + array[i].id + ".jpg\" alt=\"\"></li>");
+      });*/
     }
   });
   </script>
@@ -70,6 +84,18 @@
     }
     .ume_list li:not(:nth-child(3n)) {
       margin-right: 20px;
+    }
+    .moretext {
+      text-align: center;
+    }
+    .moretext span {
+      font-family: "Exo";
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition-duration: 0.2s;
+    }
+    .moretext span:hover {
+      opacity:0.5;
     }
   </style>
 </body>
