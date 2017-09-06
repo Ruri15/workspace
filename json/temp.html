@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>temp test</title>
+</head>
+<body>
+  <h1>test</h1>
+
+  <ul class="ume_list">
+    <!--
+    <li><img src="img/1.jpg" alt=""></li>
+    <li><img src="img/2.jpg" alt=""></li>
+    <li><img src="img/3.jpg" alt=""></li>
+    <li><img src="img/4.jpg" alt=""></li>
+    <li><img src="img/5.jpg" alt=""></li>
+    <li><img src="img/6.jpg" alt=""></li>
+    <li><img src="img/7.jpg" alt=""></li>
+    <li><img src="img/8.jpg" alt=""></li>
+    <li><img src="img/9.jpg" alt=""></li>
+    <li><img src="img/10.jpg" alt=""></li>
+    <li><img src="img/11.jpg" alt=""></li>
+    <li><img src="img/12.jpg" alt=""></li>
+    <li><img src="img/13.jpg" alt=""></li>
+    <li><img src="img/14.jpg" alt=""></li>
+    <li><img src="img/15.jpg" alt=""></li>
+  -->
+  </ul>
+  <div class="loadarea">
+    
+  </div>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+  $.ajax({
+    url: 'cats.json',
+    dataType: 'json',
+    data: {name: 'cat'},
+    success: function(data){
+      var array = data.cats;
+      $.each(array, function(i){
+        $('.ume_list').append("<li><img src=\"img/" + array[i].id + ".jpg\" alt=\"\"></li>");
+      });
+    }
+  });
+  </script>
+
+  <style>
+    html, body, h1, ul, li {
+      margin: 0;
+      padding: 0;
+      line-height: 1.0;
+    }
+    ul { list-style: none; }
+    img {
+      max-width: 100%;
+    }
+    .ume_list {
+      overflow: hidden;
+      width: 640px;
+      margin: auto;
+    }
+    .ume_list li {
+      float: left;
+      width: 200px;
+      margin-bottom: 20px;
+    }
+    .ume_list li:not(:nth-child(3n)) {
+      margin-right: 20px;
+    }
+  </style>
+</body>
+</html>
