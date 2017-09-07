@@ -49,10 +49,7 @@
         var shownItemNum = $('.ume_list').children().length;
 
         //最大枚数表示されていればなにもしない
-        if (shownItemNum >= maxNum) {
-          ;
-        }
-        else {
+        if (shownItemNum < maxNum) {
           for(var j=shownItemNum; j < shownItemNum + 3; j++ ) {
             $('.ume_list').append("<li><img src=\"img/" + array[j].id + ".jpg\" alt=\"" + array[j].name + "\"></li>");
             $('.ume_list li').css("animation", "show 1s");
@@ -67,7 +64,7 @@
 
     var umeItem = $($('.ume_list').children());
     $('body').on('click', '.ume_list li', function() {
-      console.log('おした');
+      console.log($(this));
 // overlay仮      $('body').append('<div class="overlay"></div>');
     });
   </script>
