@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>temp test</title>
+  <link href="https://fonts.googleapis.com/css?family=Exo:900" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <h1 class="heading1">cats</h1>
+
+    <div class="content">
+      <ul class="ume_list">
+      </ul>
+
+      <div class="moretext">
+        <span id="more">more cute !</span>
+      </div>
+    </div>
+  </div>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+  <script>
+  var defaultNum = 9;
+  var loadNum = 3;
+
+  $.ajax({
+    url: 'cats.json',
+    dataType: 'json',
+    data: {name: 'cat'},
+    success: function(data){
+      var array = data.cats;
+      var maxNum = array.length;//json配列の数
+
+// defaultNum枚分を表示
+      for(var i=0; i < defaultNum ; i++) {
+        $('.ume_list').append("<li><img src=\"img/" + array[i].id + ".jpg\" alt=\"" + array[i].name + "\"></li>");
+      };
+
+//全部表示する場合↓
+  /*    $.each(array, function(i){
+        $('.ume_list').append("<li><img src=\"img/" + array[i].id + ".jpg\" alt=\"\"></li>");
+      });*/
+
+      $('#more').on('click', function() {
+        //現在のlistの子要素数取得
+        var shownItemNum = $('.ume_list').children().length;
+
+        //最大枚数表示されていればなにもしない
+        if (shownItemNum < maxNum) {
+          for(var j=shownItemNum; j < shownItemNum + loadNum; j++ ) {
+            $('.ume_list').append("<li><img src=\"img/" + array[j].id + ".jpg\" alt=\"" + array[j].name + "\"></li>");
+            $('.ume_list li').css("animation", "show 1s");
+          }/*
+          while() {
+
+          }*/
+        }
+      });
+    }
+  });
+
+    var umeItem = $($('.ume_list').children());
+    $('body').on('click', '.ume_list li', function() {
+      console.log($(this));
+// overlay仮      $('body').append('<div class="overlay"></div>');
+    });
+  </script>
+
+  <style>
+    html, body, h1, ul, li {
+      margin: 0;
+      padding: 0;
+      line-height: 1.0;
+    }
+    ul { list-style: none; }
+    img {
+      max-width: 100%;
+    }
+    .container {
+      width: 640px;
+      margin: auto;
+    }
+    .overlay {
+      width: 100%;
+      height: 110vh;
+      z-index: 100;
+      background: rgba(0,0,0,0.5);
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition-duration: 0.5s;
+    }
+    .content {
+      margin-bottom: 50px;
+    }
+    @keyframes show {
+      0% { opacity: 0.1; }
+      100% { opacity: 1.0; }
+    }
+    .heading1 {
+      font-family: "Exo";
+      line-height: 2.0;
+      font-size: 3.0rem;
+    }
+    .ume_list {
+      overflow: hidden;
+      width: 100%;
+      margin: auto;
+    }
+    .ume_list li {
+      float: left;
+      width: 200px;
+      margin-bottom: 20px;
+      animation:show 1.0s;
+    }
+    .ume_list li:not(:nth-child(3n)) {
+      margin-right: 20px;
+    }
+    .moretext {
+      margin-top: 20px;
+      text-align: center;
+    }
+    .moretext span {
+      font-family: "Exo";
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition-duration: 0.2s;
+    }
+    .moretext span:hover {
+      opacity:0.5;
+    }
+  </style>
+</body>
+</html>
