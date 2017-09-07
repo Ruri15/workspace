@@ -8,19 +8,18 @@
   <link href="https://fonts.googleapis.com/css?family=Exo:900" rel="stylesheet">
 </head>
 <body>
-  <h1 class="heading1">cats</h1>
+  <div class="container">
+    <h1 class="heading1">cats</h1>
 
-<div class="content">
-  <ul class="ume_list">
-  </ul>
+    <div class="content">
+      <ul class="ume_list">
+      </ul>
 
-  <div class="loadarea">
-    <div class="moretext">
-      <span id="more">more cute !</span>
+      <div class="moretext">
+        <span id="more">more cute !</span>
+      </div>
     </div>
   </div>
-</div>
-
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
   <script>
@@ -56,7 +55,11 @@
         else {
           for(var j=shownItemNum; j < shownItemNum + 3; j++ ) {
             $('.ume_list').append("<li><img src=\"img/" + array[j].id + ".jpg\" alt=\"" + array[j].name + "\"></li>");
-          }
+            $('.ume_list li').css("animation", "show 1s");
+          }/*
+          while() {
+
+          }*/
         }
       });
     }
@@ -79,6 +82,10 @@
     img {
       max-width: 100%;
     }
+    .container {
+      width: 640px;
+      margin: auto;
+    }
     .overlay {
       width: 100%;
       height: 110vh;
@@ -90,7 +97,7 @@
       transition-duration: 0.5s;
     }
     .content {
-      animation:show 1.0s;
+      margin-bottom: 50px;
     }
     @keyframes show {
       0% { opacity: 0.1; }
@@ -99,21 +106,24 @@
     .heading1 {
       font-family: "Exo";
       line-height: 2.0;
+      font-size: 3.0rem;
     }
     .ume_list {
       overflow: hidden;
-      width: 640px;
+      width: 100%;
       margin: auto;
     }
     .ume_list li {
       float: left;
       width: 200px;
       margin-bottom: 20px;
+      animation:show 1.0s;
     }
     .ume_list li:not(:nth-child(3n)) {
       margin-right: 20px;
     }
     .moretext {
+      margin-top: 20px;
       text-align: center;
     }
     .moretext span {
